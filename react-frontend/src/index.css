@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Aptos Display", "Trebuchet MS", sans-serif;
+  --font-sans: "Aptos", "Segoe UI", sans-serif;
+}
+
+:root {
+  --font-display: "Aptos Display", "Trebuchet MS", sans-serif;
+  --font-body: "Aptos", "Segoe UI", sans-serif;
+  --app-bg: #f4efe7;
+  --panel: rgba(255, 251, 246, 0.78);
+  --panel-strong: rgba(255, 250, 244, 0.88);
+  --surface-raised: rgba(255, 255, 255, 0.7);
+  --surface-muted: rgba(255, 248, 242, 0.68);
+  --surface-hover: rgba(255, 251, 246, 0.98);
+  --surface-contrast: #e8dcc8;
+  --text-main: #3f342e;
+  --text-strong: #211914;
+  --text-muted: #78665b;
+  --text-faint: #ad9788;
+  --button-text: #fffaf5;
+  --accent: #d36c42;
+  --accent-soft: rgba(211, 108, 66, 0.14);
+  --border-soft: rgba(103, 79, 64, 0.14);
+  --pill-bg: rgba(76, 124, 111, 0.1);
+  --track: rgba(100, 88, 79, 0.12);
+  --line: rgba(100, 88, 79, 0.22);
+  --warning: #c74a4a;
+  --warning-panel: rgba(255, 238, 238, 0.82);
+  --warning-text: #8e2323;
+  --battery-start: #67c281;
+  --battery-end: #d7b45d;
+  --heat-0: rgba(76, 124, 111, 0.08);
+  --heat-1: rgba(76, 124, 111, 0.22);
+  --heat-2: rgba(76, 124, 111, 0.36);
+  --heat-3: rgba(76, 124, 111, 0.52);
+  --heat-4: rgba(76, 124, 111, 0.75);
+  --glow-primary: rgba(211, 108, 66, 0.24);
+  --glow-secondary: rgba(84, 126, 155, 0.18);
+  --shadow-soft: 0 24px 80px rgba(74, 47, 31, 0.12);
+  --shadow-button: 0 16px 32px rgba(211, 108, 66, 0.25);
+  color-scheme: light;
+  font-family: var(--font-body);
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dark {
+  --app-bg: #171e24;
+  --panel: rgba(22, 29, 36, 0.76);
+  --panel-strong: rgba(20, 27, 33, 0.9);
+  --surface-raised: rgba(33, 43, 52, 0.82);
+  --surface-muted: rgba(28, 37, 46, 0.82);
+  --surface-hover: rgba(35, 45, 54, 0.98);
+  --surface-contrast: #24303b;
+  --text-main: #d2d5d7;
+  --text-strong: #f5f0e8;
+  --text-muted: #9da7ad;
+  --text-faint: #72818a;
+  --button-text: #fdf7ef;
+  --accent: #f08d49;
+  --accent-soft: rgba(240, 141, 73, 0.12);
+  --border-soft: rgba(214, 223, 230, 0.1);
+  --pill-bg: rgba(240, 141, 73, 0.1);
+  --track: rgba(225, 231, 236, 0.1);
+  --line: rgba(225, 231, 236, 0.16);
+  --warning: #ec6f6f;
+  --warning-panel: rgba(58, 25, 25, 0.78);
+  --warning-text: #ffb6b6;
+  --battery-start: #45c46e;
+  --battery-end: #f0b24f;
+  --heat-0: rgba(69, 196, 110, 0.08);
+  --heat-1: rgba(69, 196, 110, 0.22);
+  --heat-2: rgba(69, 196, 110, 0.38);
+  --heat-3: rgba(69, 196, 110, 0.55);
+  --heat-4: rgba(69, 196, 110, 0.8);
+  --glow-primary: rgba(240, 141, 73, 0.18);
+  --glow-secondary: rgba(63, 126, 157, 0.18);
+  --shadow-soft: 0 24px 80px rgba(0, 0, 0, 0.36);
+  --shadow-button: 0 16px 32px rgba(240, 141, 73, 0.18);
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--app-bg);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(211, 108, 66, 0.22);
+}
