@@ -2,6 +2,10 @@
 
 Adaptive Productivity System (APS) is a frontend-only React UX prototype built for an HCI assignment. It is designed for university students who procrastinate, ignore reminders, struggle to start tasks, and get distracted easily. The product focuses on reducing friction to starting, making future consequences visible, and using lightweight motivation loops instead of traditional reminder-heavy interfaces.
 
+Deployed webpage:
+
+- https://hci-assignment3.github.io/HCIAssignment3/
+
 ## Project Overview
 
 APS is intentionally built with mock data and simulated interactions only.
