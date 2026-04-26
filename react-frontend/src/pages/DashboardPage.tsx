@@ -10,9 +10,9 @@ type DashboardPageProps = {
 
 const routeCards = [
   { to: '/tasks', title: 'Task Generator', detail: 'Break friction into a micro-start you can do right now.' },
+  { to: '/planner', title: 'Reverse Planner', detail: 'Turn one due date into a calm four-day runway.' },
   { to: '/energy', title: 'Battery View', detail: 'See energy tradeoffs before you promise too much.' },
   { to: '/future', title: 'Future Simulator', detail: 'Make the cost of skipping visible before tonight.' },
-  { to: '/planner', title: 'Reverse Planner', detail: 'Turn one due date into a calm four-day runway.' },
   { to: '/insights', title: 'Insights', detail: 'Review focus patterns and motivation signals.' },
 ]
 

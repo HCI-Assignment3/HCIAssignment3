@@ -184,6 +184,111 @@ For deployment, make sure GitHub Pages is configured to use `GitHub Actions` as 
 
 This project is a UX/product demo, not a production productivity platform. The interactions are intentionally simulated so the assignment can focus on experience design, flow, and visual communication rather than backend implementation.
 
+## Usability Testing Tasks
+
+Use the following tasks during user testing so you can capture completion, time on task, errors, confusion points, verbal feedback, and the final SUS score.
+
+### Task 1. Start a task using the micro-start flow
+
+Ask the user to:
+
+- Open the app
+- Go to the `Tasks` page
+- Enter a task they want to work on
+- Generate the breakdown
+- Start the first step using `Start Now`
+
+What this helps test:
+
+- Whether users understand the task generator
+- Whether the first action feels easy to begin
+- Whether the focus modal feels clear and motivating
+
+### Task 2. Use the energy page to complete a task
+
+Ask the user to:
+
+- Open the `Energy` page
+- Choose a task type they feel matches their energy
+- Press `Complete Task`
+- Explain what changed in the interface
+
+What this helps test:
+
+- Whether users understand the battery metaphor
+- Whether they notice XP, streak, and battery updates
+- Whether task effort levels feel understandable
+
+### Task 3. Explore what happens when they skip work
+
+Ask the user to:
+
+- Open the `Future` page
+- Read the future stress message
+- Press `Skip`
+- Describe what they think the app is communicating
+
+What this helps test:
+
+- Whether the consequence of skipping is clear
+- Whether the stress feedback creates discomfort in the intended way
+- Whether the UI communicates cause and effect
+
+### Task 4. Build a plan from a due date
+
+Ask the user to:
+
+- Open the `Planner` page
+- Select a due date
+- Review the timeline
+- Explain what they would do on each day
+
+What this helps test:
+
+- Whether the reverse planning timeline is understandable
+- Whether the hardcoded sequence feels realistic enough
+- Whether the page reduces planning effort
+
+### Task 5. Review attention and motivation insights
+
+Ask the user to:
+
+- Open the `Insights` page
+- Identify their focus time and distraction count
+- Look at the heatmap
+- Explain what they think the heatmap means
+
+What this helps test:
+
+- Whether the insights panel feels easy to read
+- Whether users understand the static data presentation
+- Whether the motivational signals feel useful or distracting
+
+### Task 6. Navigate across the full prototype
+
+Ask the user to:
+
+- Start from the `Dashboard`
+- Visit each page using the top navigation
+- Return to the page they found most useful
+- Explain why they chose it
+
+What this helps test:
+
+- Whether navigation is clear
+- Whether the multi-page structure feels coherent
+- Which feature users value most
+
+## What to Capture During Testing
+
+For each task, capture the following:
+
+- Task completion: mark `success`, `partial`, or `fail`
+- Time on task: use a stopwatch or online timer
+- Errors and confusion points: write down exactly what confused the user in their own words
+- Verbal feedback during and after: ask `What were you expecting?` instead of `Is this good?`
+- System Usability Scale (SUS): give the 10-item SUS questionnaire at the end of the full session
+
 ## License
 
 This project is licensed under the MIT License. See `LICENSE` for details.

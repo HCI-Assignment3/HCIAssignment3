@@ -1,20 +1,15 @@
 import { motion } from 'framer-motion'
-
-type TaskType = 'High' | 'Medium' | 'Low'
+import type { GeneratedTask } from '../App'
+import { ENERGY_META, getEnergyType } from '../lib/taskData'
 
 type BatteryPanelProps = {
   batteryLevel: number
-  lastCompletedTask: TaskType
-  onCompleteTask: (drain: number, taskType: TaskType) => void
+  currentTask: GeneratedTask
+  lastCompletedTask: string
+  onCompleteTask: (drain: number, taskTitle: string) => void
 }
 
-const tasks: Array<{ label: TaskType; drain: number; color: string; detail: string }> = [
-  { label: 'High', drain: 22, color: 'bg-rose-500', detail: 'Essay writing block' },
-  { label: 'Medium', drain: 14, color: 'bg-amber-400', detail: 'Outline and sort notes' },
-  { label: 'Low', drain: 8, color: 'bg-emerald-400', detail: 'Rename file and collect sources' },
-]
-
-export function BatteryPanel({ batteryLevel, lastCompletedTask, onCompleteTask }: BatteryPanelProps) {
+export function BatteryPanel({ batteryLevel, currentTask, lastCompletedTask, onCompleteTask }: BatteryPanelProps) {
   return (
     <motion.section
       initial={{ opacity: 0, y: 26 }}
@@ -47,33 +42,46 @@ export function BatteryPanel({ batteryLevel, lastCompletedTask, onCompleteTask }
             </div>
           </div>
         </div>
-        <p className="mt-3 text-sm text-[var(--text-muted)]">Last completed type: {lastCompletedTask}</p>
+        <p className="mt-3 text-sm text-[var(--text-muted)]">Last completed step: {lastCompletedTask}</p>
       </div>
 
       <div className="mt-5 grid gap-3">
-        {tasks.map((task) => (
+        {currentTask.breakdown.map((task) => {
+          const energyType = getEnergyType(task.title)
+          const meta = ENERGY_META[energyType]
+          const isCompleted = currentTask.completedStepTitles.includes(task.title)
+
+          return (
           <div
-            key={task.label}
+            key={task.title}
             className="rounded-[1.35rem] border border-[var(--border-soft)] bg-[var(--surface-muted)] p-4"
           >
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex items-center gap-3">
-                <span className={`h-3.5 w-3.5 rounded-full ${task.color}`} />
+                <span className={`h-3.5 w-3.5 rounded-full ${meta.color}`} />
                 <div>
-                  <p className="font-semibold text-[var(--text-strong)]">{task.label} energy task</p>
-                  <p className="text-sm text-[var(--text-muted)]">{task.detail}</p>
+                  <p className="font-semibold text-[var(--text-strong)]">
+                    {task.title} · {energyType} energy
+                  </p>
+                  <p className="text-sm text-[var(--text-muted)]">{task.caption}</p>
                 </div>
               </div>
               <button
                 type="button"
-                onClick={() => onCompleteTask(task.drain, task.label)}
-                className="inline-flex min-h-11 items-center justify-center rounded-[1rem] bg-[var(--surface-contrast)] px-4 text-sm font-semibold text-[var(--text-strong)] transition duration-200 hover:translate-y-[-1px]"
+                disabled={isCompleted}
+                onClick={() => onCompleteTask(meta.drain, task.title)}
+                className={`inline-flex min-h-11 items-center justify-center rounded-[1rem] px-4 text-sm font-semibold transition duration-200 ${
+                  isCompleted
+                    ? 'cursor-not-allowed bg-[var(--surface-hover)] text-[var(--text-muted)]'
+                    : 'bg-[var(--surface-contrast)] text-[var(--text-strong)] hover:translate-y-[-1px]'
+                }`}
               >
-                Complete Task
+                {isCompleted ? 'Completed' : 'Complete Task'}
               </button>
             </div>
           </div>
-        ))}
+          )
+        })}
       </div>
     </motion.section>
   )

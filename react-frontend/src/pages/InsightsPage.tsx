@@ -1,13 +1,16 @@
 import { motion } from 'framer-motion'
+import type { GeneratedTask } from '../App'
 import { InsightsPanel } from '../components/InsightsPanel'
 
 type InsightsPageProps = {
   batteryLevel: number
+  currentTask: GeneratedTask
+  onOpenFocusModal: () => void
   streak: number
   xp: number
 }
 
-export function InsightsPage({ batteryLevel, streak, xp }: InsightsPageProps) {
+export function InsightsPage({ batteryLevel, currentTask, onOpenFocusModal, streak, xp }: InsightsPageProps) {
   return (
     <div className="grid gap-6">
       <motion.section
@@ -24,9 +27,19 @@ export function InsightsPage({ batteryLevel, streak, xp }: InsightsPageProps) {
           This page focuses on focus time, distraction count, the heatmap, and lightweight gamification so the
           user sees progress without being overwhelmed by dashboards or notifications.
         </p>
+        <p className="mt-2 max-w-3xl text-sm leading-7 text-[var(--text-muted)]">
+          In this prototype, distraction data is mock and meant to represent self-reported check-ins rather than
+          real tracking running in the background.
+        </p>
       </motion.section>
 
-      <InsightsPanel batteryLevel={batteryLevel} streak={streak} xp={xp} />
+      <InsightsPanel
+        batteryLevel={batteryLevel}
+        currentTask={currentTask}
+        onOpenFocusModal={onOpenFocusModal}
+        streak={streak}
+        xp={xp}
+      />
     </div>
   )
 }

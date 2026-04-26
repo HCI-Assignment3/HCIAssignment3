@@ -15,9 +15,9 @@ type AppShellProps = PropsWithChildren<{
 const navItems = [
   { to: '/', label: 'Dashboard' },
   { to: '/tasks', label: 'Tasks' },
+  { to: '/planner', label: 'Planner' },
   { to: '/energy', label: 'Energy' },
   { to: '/future', label: 'Future' },
-  { to: '/planner', label: 'Planner' },
   { to: '/insights', label: 'Insights' },
 ]
 
@@ -49,15 +49,12 @@ export function AppShell({
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
               <div className="max-w-3xl">
-                <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[var(--border-soft)] bg-[var(--pill-bg)] px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-[var(--text-muted)]">
-                  Adaptive Productivity System
-                </div>
-                <h1 className="max-w-2xl font-[var(--font-display)] text-4xl leading-tight tracking-[-0.04em] text-[var(--text-strong)] sm:text-5xl">
+                <h1 className="max-w-3xl font-[var(--font-display)] text-5xl leading-[0.95] tracking-[-0.05em] text-[var(--text-strong)] sm:text-6xl">
                   Start before your brain has time to negotiate.
                 </h1>
                 <p className="mt-4 max-w-2xl text-sm leading-7 text-[var(--text-muted)] sm:text-base">
-                  APS is now split into focused pages so your prototype reads like a complete product system
-                  instead of a single long dashboard.
+                  Adaptive Productivity System helps students break overwhelming assignments into a believable
+                  first move, see what skipping costs later, and keep momentum visible without nagging reminders.
                 </p>
               </div>
 
@@ -71,20 +68,20 @@ export function AppShell({
                   {theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
                 </button>
 
-                <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+                <div className="grid gap-3 sm:grid-cols-[0.9fr_0.9fr_1.2fr] lg:grid-cols-[0.75fr_0.75fr_1.5fr]">
                   <div className="rounded-[1.5rem] border border-[var(--border-soft)] bg-[var(--surface-muted)] p-4">
                     <p className="text-xs uppercase tracking-[0.2em] text-[var(--text-muted)]">XP</p>
-                    <p className="mt-2 font-[var(--font-display)] text-3xl text-[var(--text-strong)]">{xp}</p>
+                    <p className="mt-2 font-[var(--font-display)] text-2xl text-[var(--text-strong)] sm:text-3xl">{xp}</p>
                     <p className="mt-1 text-sm text-[var(--text-muted)]">+10 on each completed task</p>
                   </div>
                   <div className="rounded-[1.5rem] border border-[var(--border-soft)] bg-[var(--surface-muted)] p-4">
                     <p className="text-xs uppercase tracking-[0.2em] text-[var(--text-muted)]">Streak</p>
-                    <p className="mt-2 font-[var(--font-display)] text-3xl text-[var(--text-strong)]">{streak} days</p>
+                    <p className="mt-2 font-[var(--font-display)] text-2xl text-[var(--text-strong)] sm:text-3xl">{streak} days</p>
                     <p className="mt-1 text-sm text-[var(--text-muted)]">{batteryLevel}% energy left</p>
                   </div>
                   <div className="rounded-[1.5rem] border border-[var(--border-soft)] bg-[var(--surface-muted)] p-4">
                     <p className="text-xs uppercase tracking-[0.2em] text-[var(--text-muted)]">Context Nudge</p>
-                    <p className="mt-2 text-sm leading-6 text-[var(--text-strong)]">{currentNudge}</p>
+                    <p className="mt-2 text-base leading-7 text-[var(--text-strong)]">{currentNudge}</p>
                     <button
                       type="button"
                       onClick={onRotateNudge}
@@ -97,16 +94,16 @@ export function AppShell({
               </div>
             </div>
 
-            <nav className="flex flex-wrap gap-2">
+            <nav className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
               {navItems.map((item) => (
                 <NavLink
                   key={item.to}
                   to={item.to}
                   end={item.to === '/'}
                   className={({ isActive }) =>
-                    `rounded-full px-4 py-2 text-sm font-medium transition ${
+                    `flex min-h-11 items-center justify-center rounded-full px-4 py-2 text-sm font-medium transition ${
                       isActive
-                        ? 'bg-[var(--text-strong)] text-[var(--button-text)]'
+                        ? 'bg-[var(--accent)] text-[var(--button-strong-text)] shadow-[var(--shadow-button)]'
                         : 'border border-[var(--border-soft)] bg-[var(--surface-muted)] text-[var(--text-strong)] hover:bg-[var(--surface-hover)]'
                     }`
                   }

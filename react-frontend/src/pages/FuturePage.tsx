@@ -1,10 +1,15 @@
 import { motion } from 'framer-motion'
+import type { GeneratedTask } from '../App'
 import { FutureSimulator } from '../components/FutureSimulator'
 
-export function FuturePage() {
+type FuturePageProps = {
+  currentTask: GeneratedTask
+}
+
+export function FuturePage({ currentTask }: FuturePageProps) {
   return (
     <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-      <FutureSimulator />
+      <FutureSimulator key={currentTask.title} currentTask={currentTask} />
 
       <motion.section
         initial={{ opacity: 0, y: 24 }}
@@ -20,6 +25,14 @@ export function FuturePage() {
           Instead of reminders, this page shows the emotional cost of avoidance. The red state, higher stress bar,
           and sharper copy make the consequence immediate without pretending the app has real predictive logic.
         </p>
+        <div className="mt-6 rounded-[1.75rem] border border-[var(--border-soft)] bg-[var(--surface-raised)] p-5">
+          <p className="text-sm text-[var(--text-muted)]">Connected task</p>
+          <p className="mt-2 text-lg font-semibold text-[var(--text-strong)]">{currentTask.title}</p>
+          <p className="mt-2 text-sm leading-6 text-[var(--text-muted)]">
+            This pulls directly from the task created on the `Tasks` page, so the future stress warning is tied to
+            the same assignment across the prototype.
+          </p>
+        </div>
         <div className="mt-6 rounded-[1.75rem] border border-[var(--border-soft)] bg-[var(--surface-raised)] p-5">
           <p className="text-sm text-[var(--text-muted)]">Prototype behavior</p>
           <p className="mt-2 text-sm leading-6 text-[var(--text-strong)]">

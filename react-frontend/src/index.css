@@ -20,6 +20,7 @@
   --text-muted: #78665b;
   --text-faint: #ad9788;
   --button-text: #fffaf5;
+  --button-strong-text: #211914;
   --accent: #d36c42;
   --accent-soft: rgba(211, 108, 66, 0.14);
   --border-soft: rgba(103, 79, 64, 0.14);
@@ -62,7 +63,8 @@
   --text-strong: #f5f0e8;
   --text-muted: #9da7ad;
   --text-faint: #72818a;
-  --button-text: #fdf7ef;
+  --button-text: #162028;
+  --button-strong-text: #162028;
   --accent: #f08d49;
   --accent-soft: rgba(240, 141, 73, 0.12);
   --border-soft: rgba(214, 223, 230, 0.1);
@@ -105,6 +107,21 @@ body {
 button,
 input {
   font: inherit;
+}
+
+button,
+a {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 ::selection {
