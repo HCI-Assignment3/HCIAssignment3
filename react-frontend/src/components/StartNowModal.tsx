@@ -7,14 +7,23 @@ type StartNowModalProps = {
 
 export function StartNowModal({ onClose }: StartNowModalProps) {
   const [secondsLeft, setSecondsLeft] = useState(120)
+  const [isRunning, setIsRunning] = useState(false)
+
+  const adjustTime = (deltaSeconds: number) => {
+    setSecondsLeft((current) => Math.min(600, Math.max(30, current + deltaSeconds)))
+  }
 
   useEffect(() => {
+    if (!isRunning) {
+      return
+    }
+
     const interval = window.setInterval(() => {
       setSecondsLeft((current) => (current <= 0 ? 120 : current - 1))
     }, 1000)
 
     return () => window.clearInterval(interval)
-  }, [])
+  }, [isRunning])
 
   const minutes = Math.floor(secondsLeft / 60)
   const seconds = String(secondsLeft % 60).padStart(2, '0')
@@ -58,6 +67,48 @@ export function StartNowModal({ onClose }: StartNowModalProps) {
           <p className="mt-3 text-sm leading-6 text-[var(--text-muted)]">
             Just open the document and sit with the task for two minutes. That is enough for now.
           </p>
+          <div className="mt-5 flex justify-center gap-3">
+            <button
+              type="button"
+              onClick={() => adjustTime(-30)}
+              className="inline-flex min-h-11 items-center justify-center rounded-[1rem] border border-[var(--border-soft)] bg-[var(--surface-raised)] px-4 text-sm font-semibold text-[var(--text-strong)] transition hover:bg-[var(--surface-hover)]"
+            >
+              -30s
+            </button>
+            <button
+              type="button"
+              onClick={() => adjustTime(30)}
+              className="inline-flex min-h-11 items-center justify-center rounded-[1rem] border border-[var(--border-soft)] bg-[var(--surface-raised)] px-4 text-sm font-semibold text-[var(--text-strong)] transition hover:bg-[var(--surface-hover)]"
+            >
+              +30s
+            </button>
+            <button
+              type="button"
+              onClick={() => adjustTime(60)}
+              className="inline-flex min-h-11 items-center justify-center rounded-[1rem] border border-[var(--border-soft)] bg-[var(--surface-raised)] px-4 text-sm font-semibold text-[var(--text-strong)] transition hover:bg-[var(--surface-hover)]"
+            >
+              +1 min
+            </button>
+          </div>
+          <div className="mt-5 flex justify-center gap-3">
+            <button
+              type="button"
+              onClick={() => setIsRunning((current) => !current)}
+              className="inline-flex min-h-11 items-center justify-center rounded-[1rem] bg-[var(--text-strong)] px-4 text-sm font-semibold text-[var(--button-text)] transition hover:translate-y-[-1px]"
+            >
+              {isRunning ? 'Pause timer' : 'Start timer'}
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setIsRunning(false)
+                setSecondsLeft(120)
+              }}
+              className="inline-flex min-h-11 items-center justify-center rounded-[1rem] border border-[var(--border-soft)] bg-[var(--surface-raised)] px-4 text-sm font-semibold text-[var(--text-strong)] transition hover:bg-[var(--surface-hover)]"
+            >
+              Reset
+            </button>
+          </div>
           <div className="mt-5 h-3 overflow-hidden rounded-full bg-[var(--track)]">
             <motion.div
               className="h-full rounded-full bg-[var(--accent)]"

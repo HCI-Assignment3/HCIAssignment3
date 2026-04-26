@@ -1,10 +1,15 @@
 import { motion } from 'framer-motion'
+import type { GeneratedTask } from '../App'
 import { ReversePlanner } from '../components/ReversePlanner'
 
-export function PlannerPage() {
+type PlannerPageProps = {
+  currentTask: GeneratedTask
+}
+
+export function PlannerPage({ currentTask }: PlannerPageProps) {
   return (
     <div className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr]">
-      <ReversePlanner />
+      <ReversePlanner currentTask={currentTask} />
 
       <motion.section
         initial={{ opacity: 0, y: 24 }}
@@ -20,6 +25,13 @@ export function PlannerPage() {
           Students often know the due date but still do not know where to begin. This page converts one chosen
           date into a stable four-step schedule that feels manageable and visually finite.
         </p>
+        <div className="mt-6 rounded-[1.75rem] border border-[var(--border-soft)] bg-[var(--surface-raised)] p-5">
+          <p className="text-sm text-[var(--text-muted)]">Current planned task</p>
+          <p className="mt-2 text-lg font-semibold text-[var(--text-strong)]">{currentTask.title}</p>
+          <p className="mt-2 text-sm leading-6 text-[var(--text-muted)]">
+            The timeline on the left reuses the task breakdown generated on the `Tasks` page.
+          </p>
+        </div>
         <div className="mt-6 rounded-[1.75rem] border border-[var(--border-soft)] bg-[var(--surface-raised)] p-5">
           <p className="text-sm text-[var(--text-muted)]">Why the timeline works</p>
           <p className="mt-2 text-sm leading-6 text-[var(--text-strong)]">

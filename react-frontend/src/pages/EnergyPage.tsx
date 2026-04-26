@@ -1,18 +1,25 @@
 import { motion } from 'framer-motion'
 import { BatteryPanel } from '../components/BatteryPanel'
-import type { EnergyTaskType } from '../App'
+import type { GeneratedTask } from '../App'
 
 type EnergyPageProps = {
   batteryLevel: number
-  lastCompletedTask: EnergyTaskType
-  onCompleteTask: (drain: number, taskType: EnergyTaskType) => void
+  currentTask: GeneratedTask
+  lastCompletedTask: string
+  onCompleteTask: (drain: number, taskTitle: string) => void
 }
 
-export function EnergyPage({ batteryLevel, lastCompletedTask, onCompleteTask }: EnergyPageProps) {
+export function EnergyPage({
+  batteryLevel,
+  currentTask,
+  lastCompletedTask,
+  onCompleteTask,
+}: EnergyPageProps) {
   return (
     <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
       <BatteryPanel
         batteryLevel={batteryLevel}
+        currentTask={currentTask}
         lastCompletedTask={lastCompletedTask}
         onCompleteTask={onCompleteTask}
       />
@@ -32,6 +39,14 @@ export function EnergyPage({ batteryLevel, lastCompletedTask, onCompleteTask }: 
           motivation. High, medium, and low effort tasks all look selectable, but the UI keeps their energy cost
           obvious.
         </p>
+        <div className="mt-6 rounded-[1.75rem] border border-[var(--border-soft)] bg-[var(--surface-raised)] p-5">
+          <p className="text-sm text-[var(--text-muted)]">Current task</p>
+          <p className="mt-2 text-lg font-semibold text-[var(--text-strong)]">{currentTask.title}</p>
+          <p className="mt-2 text-sm leading-6 text-[var(--text-muted)]">
+            The Energy page is now connected to the task you created, so students can judge effort in the context
+            of the same assignment across the app.
+          </p>
+        </div>
         <div className="mt-6 rounded-[1.75rem] border border-[var(--border-soft)] bg-[var(--surface-raised)] p-5">
           <p className="text-sm text-[var(--text-muted)]">Why this helps</p>
           <ul className="mt-3 space-y-3 text-sm leading-6 text-[var(--text-strong)]">
